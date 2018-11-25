@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Main Items</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Menu</th>
+      <th>Image</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @main_items.each do |main_item| %>
+      <tr>
+        <td><%= main_item.name %></td>
+        <td><%= main_item.description %></td>
+        <td><%= main_item.menu.name %></td>
+        <td><%=image_tag main_item.photo.url(:thumb), size: "125x85", class: "img-thumbnail" %></td>
+        <td><%= link_to 'Show', main_item %></td>
+        <td><%= link_to 'Edit', edit_main_item_path(main_item) %></td>
+        <td><%= link_to 'Destroy', main_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Main Item', new_main_item_path %>

@@ -1,0 +1,29 @@
+<div class="row">
+	<div class="container">
+		
+		<%menu.items.each do |item|%>
+			<div class="col-lg-3">
+
+				<div class="row" style="border: 2px solid #ccc;">
+					<div class="col-lg-12 capitalize">
+						<h5 align="center" style="font-weight: 600;"><%= item.name%></h5>
+						<%= image_tag item.photo(:thumb), class: "img-thumbnail borde"%>
+					</div>
+				</div>
+				<div class="row" style="margin: 4px 0 ;padding: 0">
+					<div class="col-lg-12" align="center" style="background: red;">
+						order this
+						<!-- <p style="background: red;"> Order this </p> -->
+					</div>
+				</div>
+
+			</div>
+		<%end%>
+	</div>
+</div>
+
+<style type="text/css">
+.borde{
+	border: 2px solid #000;
+}	
+</style>

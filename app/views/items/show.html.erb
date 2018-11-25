@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item.name %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @item.price %>
+</p>
+
+<p>
+  <strong>Availability :</strong>
+  <%= @item.is_available ? "Available" : "Not Available" %>
+</p>
+<!-- 
+<p>
+  <strong>Image:</strong>
+  <%#=image_tag @item.photo, size: "400x230", class: "img-thumbnail" %>
+</p> -->
+
+
+<p>
+  <strong>Menu:</strong>
+  <%= @item.menu.name %>
+</p>
+<hr>
+<%= link_to 'Edit', edit_item_path(@item), class: "btn btn-warning" %> &nbsp;
+<%= link_to 'Back', items_path, class: "btn btn-info" %>

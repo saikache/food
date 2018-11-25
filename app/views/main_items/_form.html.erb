@@ -1,0 +1,44 @@
+<%= form_for(main_item) do |f| %>
+  <% if main_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(main_item.errors.count, "error") %> prohibited this main_item from being saved:</h2>
+
+      <ul>
+      <% main_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-4">
+      
+      <div class="form-group">
+        <%= f.label :menu_id %>
+        <%= f.select("menu_id", Menu.all.collect {|m| [ "#{m.rest.name} - #{m.name}", m.id ] }, { include_blank: false }, {class: "form-control"})%>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :photo %>
+       <%= f.file_field :photo %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit class: "btn btn-success" %>
+      </div>
+      <hr>
+    </div>
+  </div>
+
+<% end %>

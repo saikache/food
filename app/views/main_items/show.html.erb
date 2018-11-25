@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @main_item.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @main_item.description %>
+</p>
+
+<p>
+  <strong>Menu:</strong>
+  <%= @main_item.menu.name %> - 
+  <%= @main_item.menu.rest.name %>
+</p>
+
+<p>
+  <strong>Image:</strong>
+  <%=image_tag @main_item.photo, size: "300x200", class: "img-thumbnail" %>
+</p>
+
+
+<%= link_to 'Edit', edit_main_item_path(@main_item) %> |
+<%= link_to 'Back', main_items_path %>
