@@ -11,6 +11,10 @@ class HomeController < ApplicationController
 
   end
 
+  def index_back
+    @menus = Restaurant.first.menus.includes(:main_items)
+  end
+
 
   def menus
   	@menus = Restaurant.first.menus.includes(:main_items)
