@@ -28,17 +28,14 @@ var vm = $scope
     // sharedProperties.setListName(name);
   };
 
-  // $http.get("/home/index.json")
-  // .then(function(res) {
-  //   debugger
-  //   $scope.myWelcome = res.data;
-  // });
 
-  
-  // $http.get("/restaurants.json")
-  // .then(function(res) {
-  //   $scope.myWelcome = res.data;
-  // });
+  vm.myMenus = function() {
+    return $http.get("/home/menu_api")
+    .success(function(data) {
+      vm.menus = data;
+    });
+  }
 
+  vm.myMenus();
 
 }]);

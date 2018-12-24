@@ -8,4 +8,8 @@ class Item < ApplicationRecord
 	# validates_attachment :photo, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
 
+	def item_price
+		"#{name}  \t #{price} RM"
+	end
+
 end

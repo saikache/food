@@ -7,8 +7,15 @@ class HomeController < ApplicationController
       format.html# { render :edit }
       format.json { render json: @menus.to_json, status: :unprocessable_entity }
     end
+  end
 
+  def menu
+    # @menus = Restaurant.first.menus    
+  end
 
+  def menu_api
+    @menus = Restaurant.first.menus
+    render json: @menus.to_json
   end
 
   def index_back
