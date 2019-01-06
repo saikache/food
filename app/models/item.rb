@@ -5,11 +5,11 @@ class Item < ApplicationRecord
   validates :price, presence: true
 
  #  has_attached_file :photo, :styles => { :original => "922x922>", :thumb => "220x220>" }
-	# validates_attachment :photo, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+  # validates_attachment :photo, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
 
-	def item_price
-		"#{name}  \t #{price} RM"
-	end
-
+  def item_price
+    "#{name}  \t - #{price} RM"
+    # name
+  end
 end

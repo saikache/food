@@ -71,13 +71,37 @@
                           </div> 
                           <div class="face back"> 
                             <span class="cross cursor"> X </span>
-                            <div class="inner text-center"> 
+                            <div class="inner text-center main-box">
                               <div class="row">
                                 <div class="col-sm-9">
-                                <%#byebug%>
                                   <%= select_tag("people", options_from_collection_for_select(main_item.items, "id", "item_price"),  { prompt: "Select One Item", class: "form-control" })%>
-                                  <%#= select_tag("people", options_from_collection_for_select(main_item.items, "id", "item_price"),  { prompt: "Select One Item", class: "form-control" })%>
-
+                                </div>
+                              </div>
+                              <div class="row take_away">
+                                <div class="col-sm-4" title="Spicy">
+                                  <%= image_tag 'spice.png', style: 'margin:10px; height:30px;'%>
+                                  <input type="checkbox" class="spice-box" onclick="console.log('spice')">
+                                </div>
+                                <div class="col-sm-4" title="Take Away">
+                                  <%= image_tag 'box.png', style: 'margin:10px; height:30px;'%>
+                                  <input type="checkbox" class="take-away" onclick="console.log('take_away')">
+                                </div>
+                              </div>
+                              <div class="row add_quantity">
+                                <div class="col-sm-8">
+                                  <label>Quantity: </label>
+                                  <input type="number"
+                                    value="0"
+                                    min="0"
+                                    style="width: 60px;"
+                                    onchange="console.log('changin.')"
+                                    onkeyup="console.log(22)"
+                                  >
+                                </div>
+                              </div>
+                              <div class="row item_price">
+                                <div class="col-sm-8">
+                                  RM: <span> 0 </span>
                                 </div>
                               </div>
                               <!-- <h3>Improved efficiency through automation</h3> -->
@@ -125,7 +149,14 @@ $(".cross").click(function(){
   $(this).parents().closest(".flip").find('.card_for_mains').toggleClass('flipped');
  });
 
-
+$('select').on('change', function() {
+  var text_array = this.options[this.options.selectedIndex].innerText.split('-')
+  var arr_length = text_array.length
+  var price_with_RM = text_array[arr_length - 1].trim();
+  var price = price_with_RM.split('RM')[0].trim()
+  // console.log(price);
+  $(this.closest('.main-box')).find(".item_price span").html(price);
+});
 
 
   var first_div = $("#accordion .panel-collapse")[0]
