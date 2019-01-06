@@ -10,6 +10,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
+    @menus = @restaurant.menus.includes(:main_items)
   end
 
   # GET /restaurants/new
