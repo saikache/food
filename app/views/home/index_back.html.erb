@@ -1,50 +1,6 @@
 <div class="container">
   <div class="row">
     <div class="container">
-
-<style type="text/css">
-  .my{
-    background: #890000;
-    min-height: 65px;
-    max-width: 190px;
-  }
-  
-  .item-div {
-    border: 2px solid #918C8B;
-    margin: 0 2%;
-    padding: 0
-  }
-  .img-css{
-    width: auto;
-    margin: 0 2%;
-    max-height: 144px;
-    min-height: 144px;
-  }
-
-  #accordion > .col-sm-3{
-    padding-left: 0;
-    padding-right: 0;
-    margin: 5px 10px;
-  }
-  .cross{
-    margin-right: 5px;
-    border-radius: 50px;
-    float: right;
-    padding: 5px;
-    z-index: 999;
-    border: 2px solid #ccc;
-  }
-  .order-this{
-    padding: 4px;
-    margin: 0 -4px 4px 4px;
-    background: red;
-    text-align: center;
-    font-weight: 600;
-    color: #fff;
-    font-size: 15px;
-  }
-</style>
-
       <div class="panel-group" id="accordion" style="padding: 10px;">
         <% @menus.each do |menu|%>
           <!-- <div class="col-sm-3 col-lg-9 panel panel-default"> -->
@@ -78,25 +34,27 @@
                                 </div>
                               </div>
                               <div class="row take_away">
-                                <div class="col-sm-4" title="Spicy">
-                                  <%= image_tag 'spice.png', style: 'margin:10px; height:30px;'%>
+                                <div class="col-sm-3" title="Spicy">
+                                  <%= image_tag 'spice.png', style: 'margin:5px; height:20px;'%>
                                   <input type="checkbox" class="spice-box" onclick="console.log('spice')">
                                 </div>
-                                <div class="col-sm-4" title="Take Away">
-                                  <%= image_tag 'box.png', style: 'margin:10px; height:30px;'%>
+                                <div class="col-sm-3" title="Take Away">
+                                  <%= image_tag 'box.png', style: 'margin:5px; height:20px;'%>
                                   <input type="checkbox" class="take-away" onclick="console.log('take_away')">
                                 </div>
                               </div>
                               <div class="row add_quantity">
-                                <div class="col-sm-8">
-                                  <label>Quantity: </label>
-                                  <input type="number"
-                                    value="0"
-                                    min="0"
-                                    style="width: 60px;"
-                                    onchange="console.log('changin.')"
-                                    onkeyup="console.log(22)"
-                                  >
+                                <div class="col-sm-5">
+                                  <button class="add-button btn btn-success btn-small" disabled="true"> + </button>
+                                  <button class="remove-button btn btn-danger btn-small" disabled="true"> - </button>
+                                </div>
+                                <div class="col-sm-5 mt-10">
+                                  <div class="quantity">
+                                    <label>Quantity: </label>
+                                    <span style="margin: 3px; font-weight: 600">
+                                      <span class="count-quantity">0</span>
+                                    </span>
+                                  </div>
                                 </div>
                               </div>
                               <div class="row item_price mt-5">
@@ -108,21 +66,36 @@
                               <!-- <button type="button" class="btn btn-default">Know More</button> -->
                             </div>
                           </div>
+<script type="text/javascript">
+  $(".add-button").click(function(event) {
+    event.stopImmediatePropagation();
+    var tmpQ = $(this).parents().closest(".flip").find('.count-quantity').html();
+    var quantity = parseInt(tmpQ);
+    if (!isNaN(quantity)) {
+      var pQuantity = quantity + 1
+      $(this).parents().closest(".flip").find('.count-quantity').html(pQuantity)
+      if (pQuantity > 0) {
+        $(this).parents().closest(".flip").find('.remove-button').prop('disabled', false);
+      }
+    }
+  })
+
+  $(".remove-button").click(function(event) {
+    event.stopImmediatePropagation();
+    var tmpQ = $(this).parents().closest(".flip").find('.count-quantity').html();
+    var quantity = parseInt(tmpQ);
+    if (!isNaN(quantity)) {
+      var presentQuantity = quantity - 1
+      $(this).parents().closest(".flip").find('.count-quantity').html(presentQuantity);
+      if (presentQuantity == 0) {
+        $(this).prop('disabled', true);
+      }
+    }
+  })
+</script>
                         </div>
                       </div>
                     </div>
-
-<!--                           
-                          <div class="col-sm-9 col-lg-3 col-md-4 cursor capitalize item-div">
-                            <h5 style="text-align: center;font-weight: 600; margin: 4px 0"><%= main_item.name%></h5>
-                            <div >
-                              <a>
-                                <%= image_tag main_item.photo(:thumb), class: "img-css"%>
-                              </a>
-                            </div>
-                            <p class="order-this">Order This</p>
-                          </div>
- -->
                   <%end%>
                 </div>
               </div>
@@ -154,7 +127,14 @@ $('select').on('change', function() {
   var arr_length = text_array.length
   var price_with_RM = text_array[arr_length - 1].trim();
   var price = price_with_RM.split('RM')[0].trim()
-  // console.log(price);
+  console.log(price);
+  if (price == 'Select One Item') {
+    $(this).closest('.flip').find(".add-button").prop('disabled', true);
+    $(this).closest('.flip').find(".remove-button").prop('disabled', true);
+  } else {
+    $(this).closest('.flip').find(".add-button").prop('disabled', false);
+    $(this).closest('.flip').find(".remove-button").prop('disabled', false);
+  }
   $(this.closest('.main-box')).find(".item_price span").html(price);
 });
 

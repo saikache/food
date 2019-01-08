@@ -15,6 +15,46 @@
  *= require_self
  */
 
+  .my{
+    background: #890000;
+    min-height: 65px;
+    max-width: 190px;
+  }
+  .item-div {
+    border: 2px solid #918C8B;
+    margin: 0 2%;
+    padding: 0
+  }
+  .img-css{
+    width: auto;
+    margin: 0 2%;
+    max-height: 144px;
+    min-height: 144px;
+  }
+
+  #accordion > .col-sm-3{
+    padding-left: 0;
+    padding-right: 0;
+    margin: 5px 10px;
+  }
+  .cross{
+    margin-right: 5px;
+    border-radius: 50px;
+    float: right;
+    padding: 5px;
+    z-index: 999;
+    border: 2px solid #ccc;
+  }
+  .order-this{
+    padding: 4px;
+    margin: 0 -4px 4px 4px;
+    background: red;
+    text-align: center;
+    font-weight: 600;
+    color: #fff;
+    font-size: 15px;
+  }
+
 .f-menu{
 	margin: 10px 0;
 	cursor: pointer;
@@ -28,7 +68,9 @@
 .mt-5 {
 	margin-top: 5px;
 }
-
+.mt-10{
+  margin-top: 10px;
+}
 .capitalize {
 	text-transform: capitalize;
 }
